@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #EEF5FF;
+    --text-color: #000;
+    --primary-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: var(--primary-color);
+    padding: 10px 10px;
+    box-shadow: var(--primary-shadow)
+}
+
+.logo {
+    text-shadow: 3px 3px 6px rgba(160, 133, 222, 1);
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.show-task-box {
+    width: 80%;
+    border: 2px solid var(--primary-color);
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: var(--primary-shadow);
+    .heading {
+        color: var(--text-color);
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+}
