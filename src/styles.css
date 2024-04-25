@@ -3,11 +3,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: serif;
 }
 :root {
     --primary-color: #EEF5FF;
     --text-color: #000;
     --primary-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    --secondary-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    --secondary-color: #83A2FF;
+    --secondary-text-color: #fff;
 }
 
 .navbar {
@@ -24,11 +28,22 @@
     text-shadow: 3px 3px 6px rgba(160, 133, 222, 1);
     font-size: 24px;
     color: var(--text-color);
+    font-family: cursive;
+}
+
+.button {
+    all: unset;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+    padding: 4px 10px;
+    border-radius: 4px;
+    box-shadow: var(--secondary-shadow);
 }
 
 .show-task-box {
     width: 80%;
-    border: 2px solid var(--primary-color);
+    border: 4px solid var(--primary-color);
     margin: auto;
     margin-top: 20px;
     box-shadow: var(--primary-shadow);
@@ -38,6 +53,56 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        
+        border-bottom: 2px solid var(--primary-color);
+        .current-date-head {
+            font-size: 18px;
+            color: var(--text-color);
+
+        }
     }
+}
+
+.task-box {
+    min-height: 100px;
+}
+.no-records {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary-color);
+    margin-top: 10px;
+}
+
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.new-task-box {
+    width: 50%;
+    height: 40%;
+    background-color: var(--secondary-text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: var(--secondary-shadow);
+
+    .new-task-head-text {
+        color: var(--secondary-color);
+        font-size: 18px;
+    }
+}
+.full-width {
+    width: 100%;
 }

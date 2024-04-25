@@ -1,0 +1,22 @@
+<div class="modal-container">
+
+  <div class="new-task-box">
+    <p class="new-task-head-text">Add new task</p>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Summary" [(ngModel)]="newTaskForm.Summary" required>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Task Id" [(ngModel)]="newTaskForm.Link" required>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="newTaskForm.Status" required>
+        <mat-option *ngFor="let status of taskService.statusList" [value]="status">
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+</div>

@@ -1,5 +1,15 @@
 <div class="show-task-box">
   <div class="heading">
-    <h3>Date</h3>
+    <h3 class="current-date-head">{{currentData.Date | date}}</h3>
+    <div>
+      <button class="button" (click)="showNewTask('Add')">Add</button>
+    </div>
   </div>
+
+  <div class="task-box">
+    <div class="no-records" *ngIf="!currentData.Tasks.length">No Records!</div>
+  </div>
+
 </div>
+
+<app-new-task *ngIf="IsShowNewTask" [currentData]="currentData" [mode]="newTaskMode"></app-new-task>
