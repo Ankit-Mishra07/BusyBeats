@@ -25,7 +25,7 @@ export class TaskService {
 
   currentDateEmptyTask() {
     return {
-      Date: new Date(),
+      Date: new Date().toDateString(),
       Tasks: []
     }
   }
@@ -33,8 +33,8 @@ export class TaskService {
   getPreviousTaskAndCurrentDate() {
     let allTasks:any[] = this.getAllTaskList();
 
-    allTasks = allTasks.filter(v => new Date(v.Date).toDateString() == new Date().toDateString());
-    if(!allTasks.length) {
+    let curDateData = allTasks.filter(v => new Date(v.Date).toDateString() == new Date().toDateString());
+    if(!curDateData.length) {
       allTasks.push(this.currentDateEmptyTask());
     }
     this.localStorageService.setItem(this.taskKey, allTasks);
@@ -42,5 +42,17 @@ export class TaskService {
   }
   getAllTaskList() {
     return this.localStorageService.getItem(this.taskKey) || [];
+  }
+
+  formatDateYYYYMMDD(date) {
+    let d = new Date(date);
+    let yyyy = d.getFullYear();
+    let mm:any = d.getMonth() + 1;
+    if(mm <= 9) {
+      mm = `0${mm}`
+    }
+    let dd = d.getDate();
+
+    return `${yyyy}-${mm}-${dd}`
   }
 }

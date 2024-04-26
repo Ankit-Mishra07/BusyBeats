@@ -15,11 +15,18 @@ export class ShowTaskComponent implements OnInit {
   selectedTask:any = null;
   selectedTaskIndexForEdit:any = null;
 
+  maxDate = new Date();
+  minDate = new Date();
+
   constructor(public taskService: TaskService, public localStorageService: LocalStorageService) { }
   @Input('currentData') currentData;
 
   ngOnInit() {
     console.log(this.currentData)
+    this.currentData.Date = new Date(this.taskService.formatDateYYYYMMDD(this.currentData.Date));
+
+    this.minDate = new Date(this.taskService.AllDateTask[0].Date);
+
   }
   showNewTask(mode) {
     this.IsShowNewTask =  true;
@@ -28,6 +35,7 @@ export class ShowTaskComponent implements OnInit {
   editSelectedTask(mode, data, index) {
     this.IsShowNewTask =  true;
     this.newTaskMode = mode;
+    
     if(mode == 'Update') {
       this.selectedTask = data;
       this.selectedTaskIndexForEdit = index;
@@ -76,6 +84,29 @@ export class ShowTaskComponent implements OnInit {
     this.updateCurrentData();
   }
   updateCurrentData() {
+    this.taskService.AllDateTask.forEach(v =>  {
+      if(new Date(v.Date).toDateString() == new Date(this.currentData.Date).toDateString()) {
+        this.currentData = JSON.parse(JSON.stringify(v))
+      }
+    });
+  }
+  copyTasksFromPreviousDateToCurrentDate() {
+    let curDate = new Date(this.currentData.Date);
+    let previousDate = new Date(curDate.setDate(new Date(curDate).getDate() - 1));
+    let previousDateObj = this.taskService.AllDateTask.find(v => new Date(v.Date).toDateString() == new Date(previousDate).toDateString());
+    if(!previousDateObj) return;
+
+    this.taskService.AllDateTask.forEach(v =>  {
+      if(new Date(v.Date).toDateString() == new Date(this.currentData.Date).toDateString()) {
+        v.Tasks = JSON.parse(JSON.stringify(previousDateObj.Tasks))
+      }
+    });
+
+    this.localStorageService.setItem(this.taskService.taskKey, this.taskService.AllDateTask);
+    this.updateCurrentData();
+  }
+
+  filerBasedOnDate() {
     this.taskService.AllDateTask.forEach(v =>  {
       if(new Date(v.Date).toDateString() == new Date(this.currentData.Date).toDateString()) {
         this.currentData = JSON.parse(JSON.stringify(v))

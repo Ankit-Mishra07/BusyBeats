@@ -1,6 +1,15 @@
 <div class="show-task-box">
   <div class="heading">
-    <h3 class="current-date-head">{{currentData.Date | date}}</h3>
+    <h3 class="current-date-head">
+      <button class="forward-btn" matTooltip="Forward tasks from previous date to current date" mat-icon-button (click)="copyTasksFromPreviousDateToCurrentDate()">
+        <mat-icon>redo</mat-icon>
+      </button>
+      <span style="display: inline-block;">
+        <input style="font-size: 0;width: 0;" matInput [max]="maxDate" class="cal-input" [min]="minDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="currentData.Date" (ngModelChange)="filerBasedOnDate()">
+        <mat-datepicker #picker></mat-datepicker>
+        <b  (click)="picker.open()">{{currentData.Date | date}}</b>
+      </span>
+    </h3>
     <div>
       <button class="button" (click)="showNewTask('Add')">Add</button>
     </div>

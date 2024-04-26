@@ -67,6 +67,7 @@
         align-items: center;
         border-bottom: 2px solid var(--primary-color);
         .current-date-head {
+            cursor: pointer;
             font-size: 18px;
             color: var(--text-color);
 
@@ -152,4 +153,15 @@
         font-size: 16px;
         
     }
+}
+.forward-btn {
+    color: #FCDC2A;
+}
+.cal-input {
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+    /* visibility: hidden; */
 }
