@@ -8,8 +8,21 @@
 
   <div class="task-box">
     <div class="no-records" *ngIf="!currentData.Tasks.length">No Records!</div>
+    <div class="task-card-row" *ngFor="let item of currentData.Tasks; let i = index">
+      <p class="summary" [matTooltip]="item.Summary">{{item.Summary}}</p>
+
+      <div class="action-box">
+        <div>
+          <a target="_blank" [href]="item.Link"> {{item.Link | taskView}} </a>
+        </div>
+        <p>{{item.Status}}</p>
+        <button mat-icon-button (click)="editSelectedTask('Update', item, i)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button (click)="deleteSelectedTask('Delete', item, i)"><mat-icon>delete</mat-icon></button>
+
+      </div>
+    </div>
   </div>
 
 </div>
 
-<app-new-task *ngIf="IsShowNewTask" [currentData]="currentData" [mode]="newTaskMode"></app-new-task>
+<app-new-task *ngIf="IsShowNewTask" (backToParent)="closeNewTask($event)" [currentData]="currentData" [selectedTask]="selectedTask" [mode]="newTaskMode"></app-new-task>

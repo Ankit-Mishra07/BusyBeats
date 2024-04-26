@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   setCurrentData(date:Date) {
-    this.currentData = this.taskService.AllDateTask.find(v => new Date(v.Date).toDateString() == new Date(date).toDateString());
+    this.currentData = JSON.parse(JSON.stringify(this.taskService.AllDateTask.find(v => new Date(v.Date).toDateString() == new Date(date).toDateString())));
     console.log(this.currentData)
   }
 

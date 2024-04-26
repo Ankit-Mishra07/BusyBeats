@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EachTask, Task } from 'src/models/task.model';
 import { TaskService } from 'src/services/task.service';
 
@@ -11,6 +11,8 @@ export class NewTaskComponent implements OnInit {
 
   @Input('currentData') currentData;
   @Input('mode') mode;
+  @Input('selectedTask') selectedTask:any;
+  @Output('backToParent') backToParent: EventEmitter<Object> = new EventEmitter();
 
   newTaskForm:EachTask = {
     Summary: '',
@@ -23,6 +25,9 @@ export class NewTaskComponent implements OnInit {
   ngOnInit() {
     if(this.mode == 'Add') {
       this.resetForm();
+      this.newTaskForm.Link = 'https://idsnextbusinesssolutions.atlassian.net/browse/'
+    }else if(this.mode == 'Update' && this.selectedTask) {
+      this.newTaskForm = JSON.parse(JSON.stringify(this.selectedTask));
     }
   }
   resetForm() {
@@ -31,6 +36,17 @@ export class NewTaskComponent implements OnInit {
       Link: '',
       Status: ''
     }
+  }
+
+  addNewTasktoList() {
+    if(!this.newTaskForm.Summary || !this.newTaskForm.Status) {
+      return;
+    }
+    this.backToParent.emit(this.newTaskForm);
+  }
+  closePopup() {
+    this.resetForm();
+    this.backToParent.emit(null);
   }
 
 }

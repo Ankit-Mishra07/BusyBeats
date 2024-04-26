@@ -8,16 +8,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ShowTaskComponent } from './components/show-task/show-task.component';
 import { NewTaskComponent } from './components/new-task/new-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
-
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, MatTooltipModule } from '@angular/material';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TaskViewPipe } from './pipes/task-view.pipe'
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
     ShowTaskComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    TaskViewPipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,10 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -31,14 +31,16 @@ export class TaskService {
   }
 
   getPreviousTaskAndCurrentDate() {
-    let allTasks:any[] = this.localStorageService.getItem(this.taskKey) || [];
+    let allTasks:any[] = this.getAllTaskList();
 
     allTasks = allTasks.filter(v => new Date(v.Date).toDateString() == new Date().toDateString());
     if(!allTasks.length) {
-      console.log(this.currentDateEmptyTask())
       allTasks.push(this.currentDateEmptyTask());
     }
     this.localStorageService.setItem(this.taskKey, allTasks);
     this.AllDateTask = allTasks;
+  }
+  getAllTaskList() {
+    return this.localStorageService.getItem(this.taskKey) || [];
   }
 }
