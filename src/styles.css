@@ -12,6 +12,9 @@
     --secondary-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     --secondary-color: #83A2FF;
     --secondary-text-color: #fff;
+    --error-color: #FC4100;
+    --warning-color: #FFC100;
+    --success-color: #8DECB4;
 }
 
 .navbar {
@@ -54,7 +57,7 @@
 }
 
 .show-task-box {
-    width: 80%;
+    width: 90%;
     border: 4px solid var(--primary-color);
     margin: auto;
     margin-top: 20px;
@@ -77,6 +80,8 @@
 
 .task-box {
     min-height: 100px;
+    max-height: 70vh;
+    overflow: auto;
 }
 .no-records {
     display: flex;
@@ -143,19 +148,36 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        padding: 5px;
     }
-    .action-box {
+    .link-action-box {
         width: 40%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         gap: 5px;
         font-size: 16px;
-        
+        .link-status {
+                width: 60%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                .status {
+                    color: var(--secondary-color);
+                }
+        }
+        .action-box {
+                width: 40%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 10px;
+        }
     }
 }
 .forward-btn {
-    color: #FCDC2A;
+    color: var(--warning-color);
 }
 .cal-input {
     font-size: 0;
@@ -164,4 +186,24 @@
     border: 0;
     font-weight: normal;
     /* visibility: hidden; */
+}
+.copy-add-btn-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-btn {
+    color: var(--success-color);
+}
+.edit-btn {
+    color: var(--warning-color);
+}
+.delete-btn {
+    color: var(--error-color);
+}
+
+.link {
+    color: #0052cc;
 }

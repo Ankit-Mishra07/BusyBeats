@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task } from 'src/models/task.model';
 import { LocalStorageService } from './local-storage.service';
+import swal from 'sweetalert'
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,31 @@ export class TaskService {
     let dd = d.getDate();
 
     return `${yyyy}-${mm}-${dd}`
+  }
+
+  copyCurrentDataAllTasks(currentData) {
+    let output = '';
+    output += new Date(currentData.Date).toDateString() + '\n';
+    currentData.Tasks.forEach((v, i) => {
+      output += i + 1 + '. ' + v.Summary + ' -- ' + v.Link + ' -- ' + v.Status + '\n';
+    });
+    this.copyToClipboard(output);
+  }
+    copyToClipboard(content: string): void {
+    const textarea = document.createElement('textarea');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    textarea.value = content;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    swal({
+      icon: "success",
+      title: "Your work has been copied",
+      timer: 1500
+    });
+
   }
 }

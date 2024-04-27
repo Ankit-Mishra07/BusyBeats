@@ -113,4 +113,9 @@ export class ShowTaskComponent implements OnInit {
       }
     });
   }
+
+  copySingleTask(item) {
+    let output = item.Summary + ' -- ' + item.Link + ' -- ' + item.Status;
+    this.taskService.copyToClipboard(output)
+  }
 }

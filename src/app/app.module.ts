@@ -33,7 +33,7 @@ import { TaskViewPipe } from './pipes/task-view.pipe'
     MatIconModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
