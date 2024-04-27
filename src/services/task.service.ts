@@ -108,4 +108,21 @@ export class TaskService {
     link.click();
     URL.revokeObjectURL(link.href);
   }
+  deleteAllDateTasks() {
+    swal({
+        title: "Are you sure?",
+        text: `Once you deleted all dates tasks, you will not be able to recover tasks!`,
+        icon: "warning",
+        buttons: ['Cancel', 'Yes'],
+        dangerMode: true,
+      }).then((willDelete) => {
+        if(willDelete) {
+          this.localStorageService.removeItem(this.taskKey);
+          this.exportAllToTextFile();
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000)
+        }else {}
+      })
+  }
 }
