@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Task } from 'src/models/task.model';
 import { LocalStorageService } from './local-storage.service';
-import swal from 'sweetalert'
+import * as _swal from 'sweetalert'
+import { SweetAlert } from 'sweetalert/typings/core';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,10 @@ export class TaskService {
     'Moved to Staging',
     'Confirmed for Production',
     'Done'
-  ]
+  ];
+
+  swal:SweetAlert = _swal as any;
+
 
   constructor(public localStorageService: LocalStorageService) { }
 
@@ -90,7 +94,7 @@ export class TaskService {
     document.execCommand('copy');
     document.body.removeChild(textarea);
 
-    swal({
+    this.swal({
       icon: "success",
       title: "Your work has been copied",
       timer: 1500
@@ -109,7 +113,7 @@ export class TaskService {
     URL.revokeObjectURL(link.href);
   }
   deleteAllDateTasks() {
-    swal({
+    this.swal({
         title: "Are you sure?",
         text: `Once you deleted all dates tasks, you will not be able to recover tasks!`,
         icon: "warning",
@@ -125,4 +129,37 @@ export class TaskService {
         }else {}
       })
   }
+
+  checkIsLocalStorageFull() {
+    const jsonString = JSON.stringify(this.localStorageService.getItem(this.taskKey));
+    const jsonSizeInBytes = new Blob([jsonString]).size;
+    const jsonSizeInMB = this.bytesToMB(jsonSizeInBytes);
+    if(jsonSizeInMB < 4.8) {
+      return false;
+    }else {
+      this.deleteDataWhenLocalStorageIsFull();
+      return true;
+    }
+  }
+  bytesToMB(bytes) {
+    return bytes / (1024 * 1024);
+  }
+
+  deleteDataWhenLocalStorageIsFull() {
+    this.swal({
+        title: "Information!",
+        text: `Please Allow us to delete previous date all tasks, data will get exported as text file!`,
+        icon: "warning",
+        dangerMode: true,
+      }).then((willDelete) => {
+            let curDateData = this.AllDateTask.filter(v => new Date(v.Date).toDateString() == new Date().toDateString());
+            this.localStorageService.removeItem(this.taskKey);
+            this.localStorageService.setItem(this.taskKey, curDateData)
+            this.exportAllToTextFile();
+            this.AllDateTask = this.localStorageService.getItem(this.taskKey);
+            window.location.reload();
+            
+      })
+  }
+
 }

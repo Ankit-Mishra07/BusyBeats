@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/services/local-storage.service';
 import { TaskService } from 'src/services/task.service';
-import swal from 'sweetalert';
-
+import * as _swal from 'sweetalert'
+import { SweetAlert } from 'sweetalert/typings/core';
 @Component({
   selector: 'app-show-task',
   templateUrl: './show-task.component.html',
@@ -18,6 +18,8 @@ export class ShowTaskComponent implements OnInit {
 
   maxDate = new Date();
   minDate = new Date();
+
+  swal:SweetAlert = _swal as any;
 
   constructor(public taskService: TaskService, public localStorageService: LocalStorageService) { }
   @Input('currentData') currentData;
@@ -43,6 +45,8 @@ export class ShowTaskComponent implements OnInit {
     }
   }
   closeNewTask(event) {
+    this.taskService.checkIsLocalStorageFull();
+
     if(event && this.newTaskMode == 'Add') {
       this.addOneTaskToTaskArray(event);
     }else if(event && this.newTaskMode == 'Update') {
@@ -51,6 +55,7 @@ export class ShowTaskComponent implements OnInit {
     this.IsShowNewTask = false;
     this.newTaskMode = 'Add';
     this.selectedTaskIndexForEdit = null;
+    this.taskService.checkIsLocalStorageFull();
   }
   addOneTaskToTaskArray(obj) {
     this.taskService.AllDateTask.forEach(v =>  {
@@ -97,7 +102,7 @@ export class ShowTaskComponent implements OnInit {
     let previousDate = new Date(curDate.setDate(new Date(curDate).getDate() - 1));
 
     if(this.currentData.Tasks && this.currentData.Tasks.length) {
-      swal({
+      this.swal({
         title: "Are you sure?",
         text: `Once forwarded tasks from ${previousDate.toDateString()}, you will not be able to recover ${curDate2.toDateString()} tasks!`,
         icon: "warning",

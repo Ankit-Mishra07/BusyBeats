@@ -15,12 +15,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.taskService.getPreviousTaskAndCurrentDate();
-    this.setCurrentData(new Date())
+    this.setCurrentData(new Date());
+    this.taskService.checkIsLocalStorageFull();
   }
 
   setCurrentData(date:Date) {
     this.currentData = JSON.parse(JSON.stringify(this.taskService.AllDateTask.find(v => new Date(v.Date).toDateString() == new Date(date).toDateString())));
-    console.log(this.currentData)
   }
 
 
