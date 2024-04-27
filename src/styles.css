@@ -62,21 +62,23 @@
     margin: auto;
     margin-top: 20px;
     box-shadow: var(--primary-shadow);
-    .heading {
+    
+}
+.heading {
         color: var(--text-color);
         padding: 5px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 2px solid var(--primary-color);
-        .current-date-head {
+        
+    }
+.current-date-head {
             cursor: pointer;
             font-size: 18px;
             color: var(--text-color);
 
         }
-    }
-}
 
 .task-box {
     min-height: 100px;
@@ -116,10 +118,10 @@
     border-radius: 4px;
     box-shadow: var(--secondary-shadow);
 
-    .new-task-head-text {
-        color: var(--secondary-color);
-        font-size: 18px;
-    }
+}
+.new-task-head-text {
+    color: var(--secondary-color);
+    font-size: 18px;
 }
 .full-width {
     width: 100%;
@@ -141,7 +143,19 @@
     box-shadow: var(--secondary-shadow);
     margin: 10px 6px;
     padding: 6px;
-    .summary {
+
+    
+}
+.link-action-box {
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+        font-size: 16px;
+
+    }
+.summary {
         border: 1px solid var(--primary-color);
         width: 60%;
         font-size: 16px;
@@ -150,34 +164,29 @@
         white-space: nowrap;
         padding: 5px;
     }
-    .link-action-box {
-        width: 40%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 5px;
-        font-size: 16px;
-        .link-status {
-                width: 60%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 10px;
-                .status {
-                    color: var(--secondary-color);
-                }
-        }
-        .action-box {
+.status {
+    color: var(--secondary-color);
+}
+
+
+.action-box {
                 width: 40%;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
                 gap: 10px;
-        }
-    }
 }
 .forward-btn {
     color: var(--warning-color);
+}
+
+.link-status {
+                width: 60%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+
 }
 .cal-input {
     font-size: 0;
