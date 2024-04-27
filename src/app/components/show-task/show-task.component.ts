@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/services/local-storage.service';
 import { TaskService } from 'src/services/task.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-show-task',
@@ -91,6 +92,27 @@ export class ShowTaskComponent implements OnInit {
     });
   }
   copyTasksFromPreviousDateToCurrentDate() {
+    let curDate = new Date(this.currentData.Date);
+    let curDate2 = new Date(this.currentData.Date);
+    let previousDate = new Date(curDate.setDate(new Date(curDate).getDate() - 1));
+
+    if(this.currentData.Tasks && this.currentData.Tasks.length) {
+      swal({
+        title: "Are you sure?",
+        text: `Once forwarded tasks from ${previousDate.toDateString()}, you will not be able to recover ${curDate2.toDateString()} tasks!`,
+        icon: "warning",
+        buttons: ['Cancel', 'Yes'],
+        dangerMode: true,
+      }).then((willForward) => {
+        if(willForward) {
+          this.forwardData();
+        }else {}
+      })
+    }else {
+      this.forwardData();
+    }
+  }
+  forwardData() {
     let curDate = new Date(this.currentData.Date);
     let previousDate = new Date(curDate.setDate(new Date(curDate).getDate() - 1));
     let previousDateObj = this.taskService.AllDateTask.find(v => new Date(v.Date).toDateString() == new Date(previousDate).toDateString());

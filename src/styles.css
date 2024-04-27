@@ -207,3 +207,17 @@
 .link {
     color: #0052cc;
 }
+
+.copy-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 20px;
+}
+.copy-export-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}

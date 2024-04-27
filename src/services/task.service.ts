@@ -65,6 +65,21 @@ export class TaskService {
     });
     this.copyToClipboard(output);
   }
+  copyAllDateallTasks() {
+    let output = this.getAllDateTasksAsText();
+    this.copyToClipboard(output);
+  }
+  getAllDateTasksAsText() {
+    let output = '';
+    this.AllDateTask.forEach((cur) => {
+      output += new Date(cur.Date).toDateString() + '\n';
+      cur.Tasks.forEach((v, i) => {
+        output += i + 1 + '. ' + v.Summary + ' -- ' + v.Link + ' -- ' + v.Status + '\n';
+      });
+      output += '\n'
+    });
+    return output;
+  }
     copyToClipboard(content: string): void {
     const textarea = document.createElement('textarea');
     textarea.style.position = 'fixed';
@@ -81,5 +96,16 @@ export class TaskService {
       timer: 1500
     });
 
+  }
+
+  exportAllToTextFile() {
+    let output = this.getAllDateTasksAsText();
+    const link = document.createElement("a");
+    const content = output;
+    const file = new Blob([content], { type: 'text/plain' });
+    link.href = URL.createObjectURL(file);
+    link.download = `${new Date().toDateString()}.txt`;
+    link.click();
+    URL.revokeObjectURL(link.href);
   }
 }
