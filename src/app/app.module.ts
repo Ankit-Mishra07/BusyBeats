@@ -10,7 +10,8 @@ import { NewTaskComponent } from './components/new-task/new-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { TaskViewPipe } from './pipes/task-view.pipe'
+import { TaskViewPipe } from './pipes/task-view.pipe';
+import { NotesComponent } from './components/notes/notes.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { TaskViewPipe } from './pipes/task-view.pipe'
     NavbarComponent,
     ShowTaskComponent,
     NewTaskComponent,
-    TaskViewPipe
+    TaskViewPipe,
+    NotesComponent
   ],
   imports: [
     BrowserModule,

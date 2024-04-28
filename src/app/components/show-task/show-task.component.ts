@@ -13,6 +13,8 @@ export class ShowTaskComponent implements OnInit {
   IsShowNewTask:boolean = false;
   newTaskMode:string = 'Add';
 
+  IsShowNotes = false;
+
   selectedTask:any = null;
   selectedTaskIndexForEdit:any = null;
 
@@ -28,6 +30,7 @@ export class ShowTaskComponent implements OnInit {
     console.log(this.currentData)
     this.currentData.Date = new Date(this.taskService.formatDateYYYYMMDD(this.currentData.Date));
 
+    this.maxDate = new Date(this.taskService.AllDateTask[this.taskService.AllDateTask.length - 1].Date);
     this.minDate = new Date(this.taskService.AllDateTask[0].Date);
 
   }
@@ -144,5 +147,18 @@ export class ShowTaskComponent implements OnInit {
   copySingleTask(item) {
     let output = item.Summary + ' -- ' + item.Link + ' -- ' + item.Status;
     this.taskService.copyToClipboard(output)
+  }
+  OpenNotes() {
+    this.IsShowNotes = true;
+  }
+  closeNotesPopup(text) {
+    this.IsShowNotes = false;
+    this.currentData.Notes = text;
+    this.taskService.AllDateTask.forEach(v =>  {
+      if(new Date(v.Date).toDateString() == new Date(this.currentData.Date).toDateString()) {
+        v.Notes = JSON.parse(JSON.stringify(text))
+      }
+    });
+    this.localStorageService.setItem(this.taskService.taskKey, this.taskService.AllDateTask);
   }
 }

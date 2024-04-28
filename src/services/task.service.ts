@@ -31,7 +31,8 @@ export class TaskService {
   currentDateEmptyTask() {
     return {
       Date: new Date().toDateString(),
-      Tasks: []
+      Notes: '',
+      Tasks: [],
     }
   }
 

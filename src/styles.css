@@ -230,3 +230,24 @@
     align-items: center;
     gap: 16px;
 }
+
+.notes-btn {
+    color: var(--warning-color);
+    margin-left: 20px;
+}
+
+.notes-container {
+    width: 50%;
+    height: 40%;
+    background-color: var(--secondary-text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: var(--secondary-shadow);
+}
+.note-box {
+    /* height: 100%; */
+}

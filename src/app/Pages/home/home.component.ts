@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   constructor(public taskService: TaskService) { }
 
-  currentData:Task = {Date: new Date(), Tasks: []}
+  currentData:Task = {Date: new Date(), Notes: '', Tasks: []}
 
   ngOnInit() {
     this.taskService.getPreviousTaskAndCurrentDate();

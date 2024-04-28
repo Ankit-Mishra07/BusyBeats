@@ -11,6 +11,9 @@
       </span>
     </h3>
     <div class="copy-add-btn-box">
+      <button matTooltip="Notes" (click)="OpenNotes()" class="notes-btn" mat-icon-button>
+        <mat-icon>speaker_notes</mat-icon>
+      </button>
       <button class="s-button copy-cur-task-btn" mat-icon-button (click)="taskService.copyCurrentDataAllTasks(currentData)"><mat-icon>file_copy</mat-icon></button>
       <button class="button" (click)="showNewTask('Add')">Add</button>
     </div>
@@ -43,3 +46,4 @@
 </div>
 
 <app-new-task *ngIf="IsShowNewTask" (backToParent)="closeNewTask($event)" [currentData]="currentData" [selectedTask]="selectedTask" [mode]="newTaskMode"></app-new-task>
+<app-notes *ngIf="IsShowNotes" (backToParent)="closeNotesPopup($event)" [currentData]="currentData"></app-notes>
