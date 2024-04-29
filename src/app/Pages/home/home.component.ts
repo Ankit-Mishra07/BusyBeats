@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     this.taskService.getPreviousTaskAndCurrentDate();
     this.setCurrentData(new Date());
     this.taskService.checkIsLocalStorageFull();
+    this.taskService.sortByDatesAndSaveToLocal();
   }
 
   setCurrentData(date:Date) {

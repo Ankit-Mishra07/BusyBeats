@@ -43,6 +43,25 @@
     </div>
   </div>
 
+  <footer class="footer">
+    <div class="copy-from-to-boxes">
+      <button class="s-button copy-all" (click)="confirmationBeforeCopyTasks('copyFromDate')">Copy from <mat-icon>fast_forward</mat-icon></button>
+      <mat-form-field>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="copyfromPicker" placeholder="Choose a date" [(ngModel)]="copyFromDate">
+        <mat-datepicker-toggle matSuffix [for]="copyfromPicker"></mat-datepicker-toggle>
+        <mat-datepicker #copyfromPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="copy-from-to-boxes"> 
+      <button (click)="confirmationBeforeCopyTasks('copyToDate')" class="s-button copy-all">Copy to <mat-icon>send</mat-icon></button>
+      <mat-form-field>
+        <input matInput [min]="minDate" [matDatepicker]="copytoPicker" placeholder="Choose a date" [(ngModel)]="copyToDate">
+        <mat-datepicker-toggle matSuffix [for]="copytoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #copytoPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </footer>
+
 </div>
 
 <app-new-task *ngIf="IsShowNewTask" (backToParent)="closeNewTask($event)" [currentData]="currentData" [selectedTask]="selectedTask" [mode]="newTaskMode"></app-new-task>

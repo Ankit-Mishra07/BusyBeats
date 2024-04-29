@@ -1,5 +1,5 @@
 export class Task {
-    Date: Date;
+    Date: Date | string;
     Notes: string;
     Tasks: EachTask[];
 }

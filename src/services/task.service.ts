@@ -163,4 +163,11 @@ export class TaskService {
       })
   }
 
+  sortByDatesAndSaveToLocal() {
+    this.AllDateTask.sort((a:any, b:any) => {
+      return  new Date(a.Date).getTime() - new Date(b.Date).getTime();
+    });
+    this.localStorageService.setItem(this.taskKey, this.AllDateTask);
+  }
+
 }
