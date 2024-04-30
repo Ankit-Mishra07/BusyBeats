@@ -35,6 +35,7 @@ export class ShowTaskComponent implements OnInit {
     this.setMinMaxDate();
   }
   setMinMaxDate() {
+    this.taskService.sortByDatesAndSaveToLocal();
     this.maxDate = new Date(this.taskService.AllDateTask[this.taskService.AllDateTask.length - 1].Date);
     this.minDate = new Date(this.taskService.AllDateTask[0].Date);
   }
@@ -88,13 +89,25 @@ export class ShowTaskComponent implements OnInit {
 
   }
   deleteSelectedTask(mode, data, index) {
-    this.taskService.AllDateTask.forEach(v =>  {
-      if(new Date(v.Date).toDateString() == new Date(this.currentData.Date).toDateString()) {
-        v.Tasks.splice(index, 1)
+    this.swal({
+        title: "Are you sure?",
+        text: `Once you deleted this task, you will not be able to recover!`,
+        icon: "warning",
+        buttons: ['Cancel', 'Yes'],
+        dangerMode: true,
+    }).then((willDlt) => {
+      if(willDlt) {
+        this.taskService.AllDateTask.forEach(v =>  {
+          if(new Date(v.Date).toDateString() == new Date(this.currentData.Date).toDateString()) {
+            v.Tasks.splice(index, 1)
+          }
+        });
+        this.localStorageService.setItem(this.taskService.taskKey, this.taskService.AllDateTask);
+        this.updateCurrentData();
+      }else {
+
       }
-    });
-    this.localStorageService.setItem(this.taskService.taskKey, this.taskService.AllDateTask);
-    this.updateCurrentData();
+    })
   }
   updateCurrentData() {
     this.taskService.AllDateTask.forEach(v =>  {

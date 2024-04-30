@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: serif;
+    font-size: 14px;
 }
 :root {
     --primary-color: #EEF5FF;
@@ -39,10 +40,11 @@
     cursor: pointer;
     background-color: var(--secondary-color);
     color: var(--secondary-text-color);
-    padding: 4px 10px;
+    padding: 8px 16px;
     border-radius: 4px;
     box-shadow: var(--secondary-shadow);
-    font-size: 20px;
+    font-size: 16px;
+    border: 1px solid var(--secondary-color);
 }
 .s-button {
     all: unset;
@@ -50,10 +52,10 @@
     color: var(--secondary-color);
     background-color: var(--secondary-text-color);
     border: 1px solid var(--secondary-color);
-    padding: 4px 10px;
+    padding: 8px 16px;
     border-radius: 4px;
     box-shadow: var(--secondary-shadow);
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .show-task-box {
@@ -222,7 +224,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 .copy-export-btn {
     display: flex;
@@ -265,4 +267,12 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+}
+
+mat-icon.mat-icon {
+   height: 20px;
+   width: 20px;
+}
+mat-icon.material-icons {
+    font-size: 20px;
 }
