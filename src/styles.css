@@ -276,3 +276,25 @@ mat-icon.mat-icon {
 mat-icon.material-icons {
     font-size: 20px;
 }
+
+/* width */
+.scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: var(--secondary-color); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--success-color); 
+}

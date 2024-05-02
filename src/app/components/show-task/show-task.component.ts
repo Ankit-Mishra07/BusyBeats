@@ -200,7 +200,7 @@ export class ShowTaskComponent implements OnInit {
   confirmationBeforeCopyTasks(source) {
     let curDate = new Date(this.currentData.Date);
     let date:any = ''
-    if(source == 'copyFromDate') {
+    if(source == 'copyFromDate' && this.copyFromDate && new Date(this.copyFromDate).toString() != 'Invalid Date') {
       date = this.copyFromDate;
       this.swal({
         title: "Are you sure?",
@@ -214,7 +214,7 @@ export class ShowTaskComponent implements OnInit {
         }else {}
       })
     }
-    if(source == 'copyToDate') {
+    if(source == 'copyToDate' && this.copyToDate && new Date(this.copyToDate).toString() != 'Invalid Date') {
       date = this.copyToDate;
       this.copyTasks(source);
     }
