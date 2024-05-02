@@ -15,10 +15,14 @@ export class TaskService {
     'Todo',
     'In Progress',
     'Code Review',
+    'Fixed(QA)',
     'QA Testing',
-    'Ready for Staging',
+    'Confirmed for Staging',
+    // 'Ready for Staging',
     'Moved to Staging',
+    'Fixed(Staging)',
     'Confirmed for Production',
+    'Shared for Production',
     'Done'
   ];
 
@@ -65,9 +69,9 @@ export class TaskService {
 
   copyCurrentDataAllTasks(currentData) {
     let output = '';
-    output += new Date(currentData.Date).toDateString() + '\n';
+    output += new Date(currentData.Date).toDateString() + '\n' + '\n';
     currentData.Tasks.forEach((v, i) => {
-      output += i + 1 + '. ' + v.Summary + ' -- ' + v.Link + ' -- ' + v.Status + '\n';
+      output += i + 1 + '. ' + v.Summary + ' -- ' + v.Link + ' -- ' + v.Status + '\n' + '\n';
     });
     this.copyToClipboard(output);
   }
@@ -78,11 +82,11 @@ export class TaskService {
   getAllDateTasksAsText() {
     let output = '';
     this.AllDateTask.forEach((cur) => {
-      output += new Date(cur.Date).toDateString() + '\n';
+      output += new Date(cur.Date).toDateString() + '\n' + '\n';
       cur.Tasks.forEach((v, i) => {
-        output += i + 1 + '. ' + v.Summary + ' -- ' + v.Link + ' -- ' + v.Status + '\n';
+        output += i + 1 + '. ' + v.Summary + ' -- ' + v.Link + ' -- ' + v.Status + '\n' + '\n';
       });
-      output += '\n'
+      output += '\n' + '\n'
     });
     return output;
   }
