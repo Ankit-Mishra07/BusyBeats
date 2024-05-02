@@ -21,6 +21,7 @@ export class TaskService {
     // 'Ready for Staging',
     'Moved to Staging',
     'Fixed(Staging)',
+    'Staging Testing',
     'Confirmed for Production',
     'Shared for Production',
     'Done'
